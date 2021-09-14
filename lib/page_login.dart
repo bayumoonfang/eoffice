@@ -2,11 +2,13 @@
 
 
 
+import 'package:eoffice/helper/app_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:toast/toast.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 class PageLogin extends StatefulWidget {
@@ -26,7 +28,7 @@ class _PageLogin extends State<PageLogin> {
     Toast.show(msg, context, duration: duration, gravity: gravity);
   }
 
-  void cekLogin() {
+  void cekLogin() async {
      if (userValue.text == "" && passwordValue.text == "") {
         showToast("Form tidak boleh Kosong", gravity: Toast.BOTTOM, duration: Toast.LENGTH_LONG);
         return;
@@ -38,6 +40,23 @@ class _PageLogin extends State<PageLogin> {
       showToast("Password Kosong", gravity: Toast.BOTTOM, duration: Toast.LENGTH_LONG);
       return;
     }
+
+     final response = await http.post(AppHelper().applink+"do=coba",
+         body: {
+            "a": userValue.text,
+            "b": passwordValue.text.toString()
+          });
+     Map showdata = jsonDecode(response.body);
+     setState(() {
+       if(showdata["a"].toString() == "Batul") {
+         showToast("Mentul2", gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+         return;
+       } else {
+         showToast("Tidak Mentul2", gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+         return;
+       }
+
+     });
 
 
   }
