@@ -1,3 +1,4 @@
+import 'package:eoffice/page_home.dart';
 import 'package:eoffice/page_login.dart';
 import 'package:eoffice/screen_splash.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PageLogin(),
+      home: Home(),
       //home : Login()
     );
   }

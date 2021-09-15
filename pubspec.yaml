@@ -31,6 +31,9 @@ dependencies:
   hexcolor: ^2.0.5
   toast: ^0.1.5
   http: ^0.12.1
+  shared_preferences: ^0.5.8
+  font_awesome_flutter: ^8.8.1
+  google_fonts: ^1.1.2
 
 
 
